@@ -9,18 +9,11 @@
 <title>Create Location</title>
 </head>
 <body>
-${Products}
-${Products.pid}
-<form action="updateLoc" method="post">
-<pre>
-	id:   <input type="text" name="id" value = "${location.id}" readonly/>
-	code: <input type="text" name="code" value = "${location.code}"/>
-	name: <input type="text" name="name" value = "${location.name}"/>
-	type: rural <input type ="radio" name="type" value ="RURAL" ${location.type=='URBAN'?'checked':'' }/>
-		  Urban <input type ="radio" name="type" value= "URBAN" ${location.type=='RURAL'?'checked':'' }/>
-	<input type="submit" name="save"/>
-</pre>
-</form>
+
+Product ${Products.pid} deleted successfully!!!
+
+<td><a href="Listproducts">Return to List Page</a></td>  
+
 
 </body>
 </html>
