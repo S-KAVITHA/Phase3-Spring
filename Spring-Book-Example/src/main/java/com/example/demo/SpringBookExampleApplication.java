@@ -13,12 +13,16 @@ public class SpringBookExampleApplication {
 	
 	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(SpringBookExampleApplication.class, args);
+		
 	}
 	
-	 void testProductData() {
-
-	System.out.println(bookrepository.findAll());
-	}
+	
+	public void run(String... args) {
+        System.out.println("StartApplication...");
+        System.out.println("get boks" + bookrepository.findAll());
+        
+    }
 	
 }

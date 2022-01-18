@@ -63,8 +63,8 @@ public class HomeController {
 
 	@RequestMapping("/pricelist/{price}")
 	
-	public Products findByprice(@PathVariable("price") int price) {
-		return (Products) productsrepo.findByprice(price);
+	public List<Products> findByprice(@PathVariable("price") float price) {
+		return productsrepo.findByprice(price);
 		 
 	}
 

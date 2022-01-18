@@ -16,69 +16,59 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.Book;
+import com.example.demo.exception.handling.BookNotFoundException;
+import com.example.demo.model.Books;
 import com.example.demo.repository.BookRepository;
 
-@Controller
 
+@RestController
+@RequestMapping("/Books")
 public class BookController {
 
 	@Autowired
 	BookRepository bookrepository;
-	
-	
-	//@GetMapping("all")
-	@RequestMapping("/books")
-	@ResponseBody
-	public List<Book> getAllBooks()
-	{
-		System.out.println(bookrepository.findAll());
-		//List<Book> book =(List<Book>) bookrepository.findAll();
-		return (List<Book>) bookrepository.findAll();
-		
-	}
-	
-	
 
-	//@GetMapping("book/{id}")
-	@RequestMapping("book/{id}")
-	@ResponseBody
-	public Optional<Book> getBookById(@PathVariable int id)
-	{
-		return bookrepository.findById(id);
+	@GetMapping("list")
+	public List<Books> getAllBooks() {
+		// List<Book> book =(List<Book>) bookrepository.findAll();
+		return (List<Books>) bookrepository.findAll();
+
 	}
-	
-	
-	
-	@PostMapping("add")
-	public Book createBook(@RequestBody Book book)
-	{
+
+	@GetMapping("id/{id}")
+	public Optional<Books> getBookById(@PathVariable int id) throws BookNotFoundException {
+
+		
+		bookrepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found for this id :: " + id));  
+		return bookrepository.findById(id);
+
+	}
+
+	@PostMapping("/add")
+	public Books createBook(@RequestBody Books book) {
 		return bookrepository.save(book);
 	}
-	
 
 	@PutMapping("update/{id}")
-	public Book updateBookById(@RequestBody Book book)
-	{
+	public Books updateBookById(@RequestBody Books book) {
 		return bookrepository.save(book);
 	}
-	
-	
-	//@DeleteMapping("delete/{id}")
-	@RequestMapping("delete/{id}")
-	@ResponseBody
-	
-	public void deleteBook(@PathVariable int id)
-	{
+
+	@DeleteMapping("delete/{id}")
+	public void deleteBook(@PathVariable int id) {
 		bookrepository.deleteById(id);
 	}
 
-	/*
-	 * @DeleteMapping("delete/{id}") public void deleteAllBook(@PathVariable int id)
-	 * { bookrepository.deleteById(id); }
-	 * 
-	 * 
-	 * @DeleteMapping("delete/{id}") public void findByPublishedYear(@PathVariable
-	 * int id) { bookrepository.deleteById(id); }
-	 */
+	@DeleteMapping("/deleteall")
+	public void deleteAllproducts() {
+		bookrepository.deleteAll();
+	}
+
+	@RequestMapping("/publishlist/{published}")
+
+	public List<Books> findByprice(@PathVariable("published") int published) {
+
+		return bookrepository.findBypublished(published);
+
+	}
 }

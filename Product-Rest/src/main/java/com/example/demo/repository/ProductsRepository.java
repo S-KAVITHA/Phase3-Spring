@@ -8,8 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import com.example.demo.model.Products;
 
 
-public interface ProductsRepository extends JpaRepository<Products, Integer>{
+public interface ProductsRepository extends CrudRepository<Products, Integer>{
 
-	List <Products> findByprice(int price);
+	List<Products> findByprice(float price);
 	
 }
