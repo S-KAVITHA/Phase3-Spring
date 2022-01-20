@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 //@Table(name = "tbl_books")
 //@EnableTransactionManagement
@@ -20,17 +22,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Books {
 
+	@ApiModelProperty(notes = "ID of the Book",name="Id",required=true,value="test Id")
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	//@Column(name = "book_id", columnDefinition = "BINARY(20)")
 	private int book_id;
 
-	//@Column(name = "description")
+	@ApiModelProperty(notes = "description of the Book",name="description",required=true,value="test description")
+		//@Column(name = "description")
 	private String description;
 
-	//@Column(name = "published")
+@ApiModelProperty(notes = "published year of the Book",name="published year",required=true,value="test published year")
+		//@Column(name = "published")
 	private int published;
 
+@ApiModelProperty(notes = "title of the Book",name="title",required=true,value="test title")
 	//@Column(name = "title")
 	private String title;
 
