@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.Products;
 
 
+import com.example.demo.repository.ProductsRepository;
+
 @SuppressWarnings("unused")
 @Repository
 public class ProductsRepositoryImpl implements ProductsRepository {
@@ -22,47 +24,45 @@ public class ProductsRepositoryImpl implements ProductsRepository {
 
 	@Override
 	public int save(Products product) {
-		return jdbcTemplate.update("insert into products (prodname, price) values(?,?)", product.getProd_name(),
+		return jdbcTemplate.update("insert into products (prod_name, price) values(?,?)", product.getProd_name(),
 				product.getPrice());
 	}
 
 	 @Override
 	    public int update(Products product) {
 	        return jdbcTemplate.update(
-	                "update Products set price = ? where id = ?",
+	                "update Products set price = ? where pid = ?",
 	                product.getPrice(), product.getPid());
 	    }
 
 
-	    @Override
 	    public int deleteById(int id) {
 	    	System.out.println(id);
 	        return jdbcTemplate.update(
-	                "delete from Products where id = ?",
+	                "delete from Products where pid = ?",
 	                id);
 	    }
 
-	    @Override
 	    public List<Products> findAll() {
 	        return jdbcTemplate.query(
 	                "select * from Products",
 	                (rs, rowNum) ->
 	                        new Products(
-	                                rs.getInt("id"),
-	                                rs.getString("prodName"),
+	                                rs.getInt("pid"),
+	                                rs.getString("prod_name"),
 	                                rs.getInt("price")
 	                        )
 	        );
 	    }
 
-	    public Optional<Products> findById(Long id) {
+	    public Optional<Products> findById(int id) {
 	        return jdbcTemplate.queryForObject(
-	                "select * from products where id = ?",
+	                "select * from products where pid = ?",
 	                new Object[]{id},
 	                (rs, rowNum) ->
 	                        Optional.of(new Products(
-	                                rs.getInt("id"),
-	                                rs.getString("prodName"),
+	                                rs.getInt("pid"),
+	                                rs.getString("prod_name"),
 	                                rs.getInt("price")
 	                        ))
 	        );

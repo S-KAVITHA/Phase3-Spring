@@ -33,6 +33,7 @@ public class ProductJdbcExampleApplication implements CommandLineRunner{
 
     void testProductData() {
 
+		
 		/*
 		 * List<Products> products = Arrays.asList( new Products(1,"Honey", 16), new
 		 * Products(4,"Cake", 15) );
@@ -47,11 +48,12 @@ public class ProductJdbcExampleApplication implements CommandLineRunner{
 		  System.out.println("get All students: "+productsService.findAll());
 		  
 		  // find by id System.out.println("Find Student with id 2"); 
-		  Products product = productsService.findById(10L).orElseThrow(IllegalArgumentException::new);
+		  
+		  Products product = productsService.findById(64).orElseThrow(IllegalArgumentException::new);
 		  System.out.println("Student with id 2: "+product);
 		  
 		  // update System.out.println("Update age of row 5 to 19");
-		  product.setPid(2);
+		  product.setPid(64);
 		  product.setPrice(200);
 		  System.out.println("Rows affected: "+productsService.update(product));
 		  

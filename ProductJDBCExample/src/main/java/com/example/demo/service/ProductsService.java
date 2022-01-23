@@ -19,7 +19,7 @@ public interface ProductsService {
 
     List<Products> findAll();
     
-    Optional<Products> findById(Long id);
+    Optional<Products> findById(int id);
 
 }
 

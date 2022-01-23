@@ -19,7 +19,7 @@ public interface ProductsRepository {
 	  List<Products> findAll();
 
 
-	Optional<Products> findById(Long id);
+	Optional<Products> findById(int id);
 	  
 	 
 

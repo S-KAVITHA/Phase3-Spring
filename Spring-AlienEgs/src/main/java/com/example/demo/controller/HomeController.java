@@ -40,6 +40,22 @@ public class HomeController {
 		return modelAndView;
 	}
 
+@RequestMapping("/editsuccess/{id}")
+	public String editsuccessform(@PathVariable int id, float price, Model m) {
+
+				
+		m.addAttribute("pid", id);
+		
+		 Products product = productsService.findById(id).orElseThrow(IllegalArgumentException::new);
+		 product.setPid(id); 
+		 product.setPrice(price);
+		 productsService.update(product);
+		 
+		System.out.println(product);
+		
+		return "editsuccess";
+	}
+
 	@RequestMapping("/addtotable")
 	public ModelAndView Addtotable(Products product) {
 

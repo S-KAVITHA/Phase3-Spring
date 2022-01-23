@@ -3,7 +3,7 @@
   
 <h1>Products List</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Product Id</th><th>Product Name</th><th>price</th><th>Edit</th><th>Delete</th></tr>  
+<tr><th>Product Id</th><th>Product Name</th><th>Price</th><th>Edit</th><th>Delete</th></tr>  
    <c:forEach var="prod" items="${Products}">   
    <tr>  
    <td>${prod.pid}</td>  
@@ -16,3 +16,7 @@
    </c:forEach>  
    </table>  
    <br/>  
+   
+      <h3> <a href="/Home">Go Back to Home Page</a></h3>
+      
+      

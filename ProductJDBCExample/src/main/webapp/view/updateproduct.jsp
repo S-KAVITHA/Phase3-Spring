@@ -1,26 +1,28 @@
-  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
   
-<h2> Product Updation Page !!!</h2>  
-<table border="2" width="70%" cellpadding="2">  
-<tr><th>Product Id</th><th>Product Name</th><th>price</th></tr>  
+  <%@page import="com.example.demo.model.Products"%>  
+ 
+  	
+ <center> 
+ </table> 
+ 
+        <h2>Edit Product</h2>  <br>
+        
+       <form method="POST" action="/Save">   
+      
+      <h3>
      
-   <tr>  
-   <td><center>${Products.pid}</center></td>  
-   <td><center>${Products.prod_name}</center></td>  
-   <td><center>${Products.price}</center></td>  
-   
-   </tr>  
-     </table>  
-   <br/>  
-   
-   <form:form method="POST" action="/ProductJDBCExample/editprod">    
-			<font color="blue"><h2>Update Price here !!!</h2></font>
-			<h5><br> Enter New Price : <input type="text" name="price"><br> <br></h5>
-			
-		<h3>	<bold> <button>Submit</button></bold></h3>
-		
-		
-			<br> <br>
-	     </form:form> 
-   
+       <input type="hidden" name="id" value="${products.pid}"/>  
+             
+     Product Name:   <input type="text" name="name" value="${products.prod_name}"/>  <br><br>
+     
+     Product Price:   <input type="text" name="price" value="${products.price}"/>  <br><br>
+     
+ 					 <input type="submit" value="Submit"/>
+
+ </center></h3> 
+     </table>   
+</form>  
+       
+       
