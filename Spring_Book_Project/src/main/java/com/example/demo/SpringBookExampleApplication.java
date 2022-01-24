@@ -9,7 +9,7 @@ import com.example.demo.repository.BookRepository;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableSwagger2
+
 public class SpringBookExampleApplication {
 	
 	

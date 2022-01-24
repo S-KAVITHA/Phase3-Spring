@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.handling.BookNotFoundException;
 import com.example.demo.model.Books;
 import com.example.demo.repository.BookRepository;
 
@@ -48,7 +49,7 @@ public class BookController {
 	
 	@ApiOperation(value = "Get specific Book in the System ", response = Books.class, tags = "getBookById")
 	@GetMapping("book/{id}")
-	public Optional<Books> getBookById(@PathVariable int id)
+	public Optional<Books> getBookById(@PathVariable int id) throws BookNotFoundException
 	{
 		return bookrepository.findById(id);
 	}
