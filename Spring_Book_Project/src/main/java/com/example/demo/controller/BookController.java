@@ -58,6 +58,18 @@ public class BookController {
 	
 	
 	
+	@ApiOperation(value = "Get Books by year in the System ", response = Books.class, tags = "getBookByyear")
+	@GetMapping("year/{year}")
+	public List<Books> getBookByyear(@PathVariable int year)  
+	{
+		//String messgae = " Book Not Found";
+		return bookrepository.findBypublished(year);
+		
+	}
+	
+	
+	
+	
 	
 	@ApiOperation(value = "Create Book in the System ", response = Books.class, tags = "createBook")
 	@PostMapping("add")

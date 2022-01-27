@@ -16,8 +16,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-//@Table(name = "tbl_books")
-//@EnableTransactionManagement
+@Table(name = "tbl_books")
+@EnableTransactionManagement
 
 public class Books {
 
