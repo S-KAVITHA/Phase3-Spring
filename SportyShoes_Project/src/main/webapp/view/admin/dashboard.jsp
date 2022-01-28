@@ -9,6 +9,7 @@
 <body>
 
 
+
 <h1><font color="blue"> SportsShoes<Green></h1></font> 
 
 <p align="right">
@@ -16,9 +17,9 @@
 <button type="submit" formaction="/adminlogout">Logout</button>
 </p>
 <center>
-<h3><font color="green"> Welcome Admin,</br></br> 
+<h3>Welcome Admin,</br></br> 
 
-You are allowed to perform all these maintainence operations.</font></h3>
+You are allowed to perform all these maintainence operations.</h3>
 
 <h3><a href="/adminproducts">Add Products</a></h3>
 <h3><a href="/admincategories">Add Categories</a></h3>
@@ -28,7 +29,7 @@ You are allowed to perform all these maintainence operations.</font></h3>
    
  </center>
   
-
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
 
 </body>
 </html>

@@ -3,11 +3,10 @@
   
   <%@page import="com.example.demo.model.Product"%>  
  
-  	
- <center> 
+<center> 
  </table> 
  
-        <h2>Edit Product</h2>  <br>
+        <h2><font color="blue">Edit Product</h2> </font> <br>
         
        <form method="POST" action="/Save">   
      
@@ -64,5 +63,6 @@
  </center></h3> 
      </table>   
 </form>  
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
        
        

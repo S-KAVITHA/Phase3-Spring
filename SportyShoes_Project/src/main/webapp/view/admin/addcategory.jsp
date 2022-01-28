@@ -7,22 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<center>
-		<h2>Add Category Here !!!</h2>
+		<h2><font color="blue">Add Category Here !!!</h2></font>
 		<form action="addcattotable">
 		
 		
-		<font color="blue"><h2>${message}</h3> </h2></font>
+		<h5><font color="green"><h2>${message}</h5> </font>
 		
 
 			<table border=1 cellspacing=2 cellpadding=4>
 				<tr>
-					<td width=25%>Product Name</td>
+					<td width=25%>Category Name</td>
 					<td><input name=name type="text"></td>
 				</tr>
 				<tr>
 					<td width=25%></td>
-					<td><button>Add Product</button></td>
+					<td><button>Add Category</button></td>
 				</tr>
 
 
@@ -33,7 +34,7 @@
 			<a href="/Home">Go Back to Home Page</a>
 		</h3>
 	</center>
-
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
 </body>
 </html>
 

@@ -7,3 +7,4 @@
 
 
    <h3> <a href="/Home">Go Back to Home Page</a></h3>
+   <jsp:include page="/view/components/footer.jsp" ></jsp:include>

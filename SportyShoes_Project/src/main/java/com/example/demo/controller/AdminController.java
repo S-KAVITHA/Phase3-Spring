@@ -1,9 +1,17 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,6 +52,8 @@ public class AdminController {
 
 	@Autowired
 	CategorysRepository categoryrepo;
+	
+	
 
 	@RequestMapping("/Admin")
 	public ModelAndView HomePage() {
@@ -53,31 +63,8 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	/*
-	 * @RequestMapping("/adminsubmit")
-	 * 
-	 * public ModelAndView Addtotable(Admin admin) {
-	 * 
-	 * ModelAndView modelAndView = new ModelAndView("admin/dashboard");
-	 * 
-	 * return modelAndView; }
-	 * 
-	 */
-
-	/*
-	 * ModelAndView modelAndView = new ModelAndView(); Boolean get_Id =
-	 * adminrepo.existsByadminId(id); Boolean get_pwd = adminrepo.existsBypwd(pwd);
-	 * 
-	 * if (get_Id || get_pwd) {
-	 * 
-	 * modelAndView.addObject("admin/dashboard"); } else {
-	 * 
-	 * modelAndView.addObject("error", "Admin login failed");
-	 * modelAndView.addObject("admin/dashboard"); }
-	 * 
-	 * return modelAndView;
-	 */
-
+	
+	
 	@GetMapping("adminsubmit")
 	public String loginAction(ModelMap map, javax.servlet.http.HttpServletRequest request,
 			@RequestParam(value = "admin_id", required = true) String adminId,
@@ -97,11 +84,15 @@ public class AdminController {
 		}
 	}
 
+	
+	
 	@GetMapping("Home")
 	public String Homepage(ModelMap map) {
 		return "admin/dashboard";
 	}
 
+	
+	
 	@RequestMapping("/adminproducts")
 	public ModelAndView AddProducts() {
 
@@ -121,15 +112,48 @@ public class AdminController {
 		return modelAndView;
 	}
 
+	
+	
 	@RequestMapping("/addtotable")
-	public ModelAndView Addtotable(Product product) {
+	public ModelAndView Addtotable(Product product) throws ParseException {
 
 		ModelAndView modelAndView = new ModelAndView("admin/addproduct");
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+         Calendar cal = Calendar.getInstance();
+         Date date = cal.getTime();
+         String todaysdate = dateFormat.format(date);
+          System.out.println("Today's date : " + todaysdate);
+          
+		product.setCreatedDate(todaysdate);
 		productrepo.save(product);
 		System.out.println(product);
 		modelAndView.addObject("message", "Product added Successfully!!!");
 		return modelAndView;
 	}
+
+	
+	
+	@RequestMapping("/admincategories")
+	public ModelAndView AddCategory() {
+
+		ModelAndView modelAndView = new ModelAndView("admin/addcategory");
+		return modelAndView;
+	}
+
+	
+	
+	@RequestMapping("/addcattotable")
+	public ModelAndView Addcattotable(Categorys category) {
+
+		ModelAndView modelAndView = new ModelAndView("admin/addcategory");
+		
+		categoryrepo.save(category);
+		System.out.println(category);
+		modelAndView.addObject("message", "Category added Successfully!!!");
+		return modelAndView;
+	}
+
+	
 
 	@RequestMapping("/ListProducts")
 	public ModelAndView Listadmin() {
@@ -139,21 +163,5 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/admincategories")
-	public ModelAndView AddCategory() {
-
-		ModelAndView modelAndView = new ModelAndView("admin/addcategory");
-		return modelAndView;
-	}
-
-	@RequestMapping("/addcattotable")
-	public ModelAndView Addcattotable(Categorys category) {
-
-		ModelAndView modelAndView = new ModelAndView("admin/addcategory");
-		categoryrepo.save(category);
-		System.out.println(category);
-		modelAndView.addObject("message", "Product added Successfully!!!");
-		return modelAndView;
-	}
-
+	
 }

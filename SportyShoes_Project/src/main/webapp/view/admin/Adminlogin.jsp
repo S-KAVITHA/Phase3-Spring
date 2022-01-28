@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<center>
-		<h2>Welcome SportyShoes Admin Login Page !!!</h2>
+		<h2><font color="blue">Welcome SportyShoes Admin Login Page !!!</h2></font>
 		<form action="adminsubmit">
 
 			   <font color="red"><h2>${error}</h3> </h2></font>
@@ -20,7 +21,7 @@
 		</form>
 
 	</center>
-
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
 </body>
 </html>
 

@@ -11,6 +11,7 @@
 </head>
 <body>
 
+
 Total Products: ${list.size()}  &nbsp;&nbsp; <a href="admineditproduct?id=0">Add Product</a><br>
 <table border=1 cellspacing=2 cellpadding=4>
  	<tr>
@@ -32,6 +33,6 @@ Total Products: ${list.size()}  &nbsp;&nbsp; <a href="admineditproduct?id=0">Add
  	  	</tr>
  	  </c:forEach>
 </table> 	
-
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
 </body>
 </html>

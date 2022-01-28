@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,97 +13,86 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name= "eproduct")   
-public class Product { 
+@Table(name = "eproduct")
+public class Product {
 
-
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "productId")
 	private long productId;
-	
+
 	@Column(name = "name")
 	private String name;
-	
-	@OneToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "cat_Id")
-	private Categorys category;  
-	
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Categorys category;
+
 	@Enumerated(EnumType.STRING)
-	private Season season;  
-	
+	private Season season;
+
 	@Enumerated(EnumType.STRING)
-	private ShoeType shoetype;  
-	
+	private ShoeType shoetype;
+
 	@Column(name = "price")
 	private float price;
-	
-	@Enumerated(EnumType.STRING)
-	private Color color;  
-	
-	@Column(name = "createdDate")
-	private Date createdDate;  
 
-	
+	@Enumerated(EnumType.STRING)
+	private Color color;
+
+	@Column(name = "createdDate")
+	private String createdDate;
+
 	@Column(name = "discount")
-	private int discount;  
-	
+	private String discount;
+
 	@Column(name = "quantity")
 	private int quantity;
-	
+
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public long getProductId() {
 		return productId;
 	}
-
 
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public Categorys getCategory() {
 		return category;
 	}
-
 
 	public void setCategory(Categorys category) {
 		this.category = category;
 	}
 
-
 	public Season getSeason() {
 		return season;
 	}
-
 
 	public void setSeason(Season season) {
 		this.season = season;
 	}
 
-
 	public Product(long productId, String name, Categorys category, Season season, ShoeType shoetype, float price,
-			Color color, Date createdDate, int discount, int quantity) {
+			Color color, String createdDate, String discount, int quantity) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -122,59 +110,48 @@ public class Product {
 		return shoetype;
 	}
 
-
 	public void setShoetype(ShoeType shoetype) {
 		this.shoetype = shoetype;
 	}
-
 
 	public float getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
 
 	public Color getColor() {
 		return color;
 	}
 
-
 	public void setColor(Color color) {
 		this.color = color;
 	}
 
-
-	public Date getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
-
-	public int getDiscount() {
+	public String getDiscount() {
 		return discount;
 	}
 
-
-	public void setDiscount(int discount) {
+	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 }

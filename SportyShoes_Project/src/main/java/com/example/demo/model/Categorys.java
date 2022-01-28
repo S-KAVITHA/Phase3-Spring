@@ -1,7 +1,8 @@
 package com.example.demo.model;
 
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,34 +21,33 @@ import javax.persistence.Table;
 public class Categorys {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "category_Id")
-	private String category_Id;
+	private int category_Id;
 
 	@Column(name = "name")
 	private String name;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL ,mappedBy = "category")
-	private Product product;
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Product> product = new HashSet<>();
 
-	
 	public Categorys() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorys(String category_Id, String name, Product product) {
+	public Categorys(int category_Id, String name, Set<Product> product) {
 		super();
 		this.category_Id = category_Id;
 		this.name = name;
 		this.product = product;
 	}
 
-	public String getCategory_Id() {
+	public int getCategory_Id() {
 		return category_Id;
 	}
 
-	public void setCategory_Id(String category_Id) {
+	public void setCategory_Id(int category_Id) {
 		this.category_Id = category_Id;
 	}
 
@@ -60,11 +59,11 @@ public class Categorys {
 		this.name = name;
 	}
 
-	public Product getProduct() {
+	public Set<Product> getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(Set<Product> product) {
 		this.product = product;
 	}
 

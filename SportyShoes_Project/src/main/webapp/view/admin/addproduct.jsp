@@ -8,23 +8,16 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-
 <html>
 <head>
 </head>
 <body>
-
 	<center>
-
-
 		</div>
-		<h2>Add Products here!!!</h2>
-		<br> <font color="blue"><h2>${message}</h3>
-			</h2></font>
-
+		<h2><font color="blue">Add Products here!!!</h2></font>
+		
 		<form action="addtotable">
-
+			<h5><font color="green"><h2>${message}</h5> </font>
 			<table border=1 cellspacing=2 cellpadding=4>
 				<tr>
 					<td width=25%>Product Name</td>
@@ -85,11 +78,12 @@
 
 			</table>
 		</form>
-	</center>
-
-	<h3>
+		<h3>
 		<a href="/Home">Go Back to Home Page</a>
 	</h3>
+	</center>
 
+	
+<jsp:include page="/view/components/footer.jsp" ></jsp:include>
 </body>
 </html>
