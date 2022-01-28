@@ -2,14 +2,14 @@ package com.example.demo.model;
 
 
 
-public enum Season {
+public enum ShoeType {
 	
-	 Winter("Winter"), Summer("Summer"), Rainy("Rainy") ;
+	 Male("Male"), Female("Female"), Both("Both") ;
 
    private String name;
 
 
-	private Season(String name) {
+	private ShoeType(String name) {
 	this.name = name;
 }
 

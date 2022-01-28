@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Categorys;
+import com.example.demo.model.Color;
 import com.example.demo.model.Product;
 import com.example.demo.model.Season;
+import com.example.demo.model.ShoeType;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.CategorysRepository;
 import com.example.demo.repository.ProductRepository;
@@ -83,8 +85,7 @@ public class AdminController {
 
 		Boolean get_Id = adminrepo.existsByadminId(adminId);
 		Boolean get_pwd = adminrepo.existsBypwd(adminPwd);
-		System.out.println(get_pwd);
-		System.out.println(get_Id);
+
 		if (get_Id && get_pwd) {
 
 			return "admin/dashboard";
@@ -101,17 +102,20 @@ public class AdminController {
 		return "admin/dashboard";
 	}
 
-	
-	
 	@RequestMapping("/adminproducts")
 	public ModelAndView AddProducts() {
 
 		ModelAndView modelAndView = new ModelAndView("admin/addproduct");
-		 List<Season> type_list = new ArrayList<Season>(Arrays.asList(Season.values()));
+		List<Season> type_list = new ArrayList<Season>(Arrays.asList(Season.values()));
 		modelAndView.addObject("type_list", type_list);
 
-		List<Categorys> cat_list = (List<Categorys>) categoryrepo.findAll();
+		List<ShoeType> Shoe_list = new ArrayList<ShoeType>(Arrays.asList(ShoeType.values()));
+		modelAndView.addObject("Shoe_list", Shoe_list);
+		
+		List<Color> Color_list = new ArrayList<Color>(Arrays.asList(Color.values()));
+		modelAndView.addObject("Color_list", Color_list);
 
+		List<Categorys> cat_list = (List<Categorys>) categoryrepo.findAll();
 		modelAndView.addObject("categories", cat_list);
 
 		return modelAndView;

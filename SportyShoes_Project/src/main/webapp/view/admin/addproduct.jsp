@@ -16,20 +16,7 @@
 <body>
 
 	<center>
-	
-	
-	 <select name="type_list" name="type_list" id="type_list">
-      <option value="Select"></option>
-        <c:forEach var="type_list" items="${type_list}">
-            <li>${type_list}</li>
-        </c:forEach>
-    </select>
 
- <select name="category">
-						<c:forEach items="${type_list}" var="category">
-							<option value="${category.brand}"></option>
-						</c:forEach>
-					</select>
 
 		</div>
 		<h2>Add Products here!!!</h2>
@@ -45,24 +32,29 @@
 
 				</tr>
 				<tr>
-				<td width=25%>Category</td>	
-				<td>
-					<select name="category">
-						<c:forEach items="${categories}" var="category">
-							<option value="${category.category_Id}">${category.name}</option>
-						</c:forEach>
-					</select>
-					</td>
+					<td width=25%>Category</td>
+					<td><select name="category">
+							<c:forEach items="${categories}" var="category">
+								<option value="${category.category_Id}">${category.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 
 				<tr>
 					<td width=25%>Season</td>
-					<td><input name=Season type="text"></td>
+					<td><select name="season">
+							<c:forEach items="${type_list}" var="getseason">
+								<option value="${getseason.name}">${getseason.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
-					<td width=25%>Brand</td>
-					<td><input name=Brand type="text"></td>
-
+					<td width=25%>ShoeType</td>
+					<td><select name="shoetype">
+							<c:forEach items="${Shoe_list}" var="getshoe">
+								<option value="${getshoe.name}">${getshoe.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td width=25%>Price</td>
@@ -70,7 +62,11 @@
 				</tr>
 				<tr>
 					<td width=25%>Color</td>
-					<td><input name=Color type="text"></td>
+					<td><select name="color">
+							<c:forEach items="${Color_list}" var="getcolor">
+								<option value="${getcolor.name}">${getcolor.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td width=25%>Discount</td>

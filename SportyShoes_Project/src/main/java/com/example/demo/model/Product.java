@@ -57,35 +57,10 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 	
-	
-	public enum ShoeType {
-
-		Monday,Tuesday
-		
-	}
-	
-	public enum Color {
-
-	    Blue, Black, White , Brown
-	}
-	
-	
-	/*
-	 * public enum Season {
-	 * 
-	 * Winter, Summer, Rainy
-	 * 
-	 * }
-	 */
-
-	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 
 	public long getProductId() {
@@ -128,10 +103,6 @@ public class Product {
 	}
 
 
-	
-
-
-
 	public Product(long productId, String name, Categorys category, Season season, ShoeType shoetype, float price,
 			Color color, Date createdDate, int discount, int quantity) {
 		super();
@@ -147,24 +118,14 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-
-
-
-
 	public ShoeType getShoetype() {
 		return shoetype;
 	}
 
 
-
-
-
 	public void setShoetype(ShoeType shoetype) {
 		this.shoetype = shoetype;
 	}
-
-
-
 
 
 	public float getPrice() {
@@ -215,6 +176,5 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	
 }

@@ -21,9 +21,9 @@ import javax.persistence.Table;
 public class Categorys {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_Id")
-	private Long category_Id;
+	private String category_Id;
 
 	@Column(name = "name")
 	private String name;
@@ -37,19 +37,19 @@ public class Categorys {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorys(Long category_Id, String name, Product product) {
+	public Categorys(String category_Id, String name, Product product) {
 		super();
 		this.category_Id = category_Id;
 		this.name = name;
 		this.product = product;
 	}
 
-	public Long getCategory_Id() {
+	public String getCategory_Id() {
 		return category_Id;
 	}
 
-	public void setCategory_Id(int category_Id) {
-		this.category_Id = (long) category_Id;
+	public void setCategory_Id(String category_Id) {
+		this.category_Id = category_Id;
 	}
 
 	public String getName() {
