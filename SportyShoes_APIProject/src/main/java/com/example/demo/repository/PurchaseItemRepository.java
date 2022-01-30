@@ -17,4 +17,5 @@ public interface PurchaseItemRepository extends JpaRepository<PurchaseItem, Inte
 	List<PurchaseItem> findBypurchaseDate(String purchaseDate);
 	List<PurchaseItem> findByprodCategory(int prodCategory);
 	
+	
 }

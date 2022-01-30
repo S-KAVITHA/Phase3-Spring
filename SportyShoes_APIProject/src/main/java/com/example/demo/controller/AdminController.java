@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.exception.handling.BookNotFoundException;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Categorys;
 import com.example.demo.model.Color;
@@ -36,6 +36,11 @@ import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.PurchaseItemRepository;
 import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+
+//@author Kavitha S
+
 
 //@Api(value = "SwaggerBookController", description = "REST Apis related to Book Entity!!!!")
 @RestController
@@ -57,6 +62,10 @@ public class AdminController {
 	@Autowired
 	PurchaseItemRepository purchaserepo;
 
+	/*
+	 * ---------------------- Admin Operations ----------------------
+	 */
+
 	// @ApiOperation(value = "Get list of Books in the System ", response =
 	// Iterable.class, tags = "getAllBooks")
 	// @ApiResponses(value = {
@@ -75,7 +84,7 @@ public class AdminController {
 	// Books.class, tags = "getBookById")
 
 	@GetMapping("admin/{id}")
-	public Optional<Admin> getBookById(@PathVariable int id) {
+	public Optional<Admin> getadminById(@PathVariable int id) {
 
 		return adminrepo.findById(id);
 	}
@@ -83,15 +92,37 @@ public class AdminController {
 	// @ApiOperation(value = "Update specific Book in the System ", response
 	// =Books.class, tags = "updateBookById")
 	@PutMapping("update/{id}")
-	public Admin updateBookById(@RequestBody Admin admin) {
+	public Admin updateadminById(@RequestBody Admin admin, @PathVariable int id) {
+		admin.setID(id);
 		return adminrepo.save(admin);
 	}
 
+	/*
+	 * ---------------------- Category Operations ----------------------
+	 */
+
 	@PostMapping("addcategory")
 	public Categorys addcategory(@RequestBody Categorys category) {
-
 		return categrepo.save(category);
 	}
+
+	
+	@PutMapping("updatecategory/{id}")
+	public Categorys updateCategory(@RequestBody Categorys category ,@PathVariable int id) {
+		category.setCategory_Id(id);
+		return categrepo.save(category);
+	}
+
+	
+	@DeleteMapping("deletecategory/{id}")
+	public void deleteCategory(@PathVariable int id) {
+		categrepo.deleteById(id);
+	}
+
+	
+	/*
+	 * ---------------------- Product Operations ----------------------
+	 */
 
 	@PostMapping("addproduct")
 	public Product addProduct(@RequestBody Product product) {
@@ -113,7 +144,7 @@ public class AdminController {
 	}
 
 	@PutMapping("updateproduct/{id}")
-	public Product updateStudent(@RequestBody Product product, @PathVariable("id") int id) {
+	public Product updateproduct(@RequestBody Product product, @PathVariable("id") int id) {
 		System.out.println(product);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
@@ -147,7 +178,7 @@ public class AdminController {
 	}
 
 	@GetMapping("prodshoetype/{shoetype}")
-	public List<Product> shoetype(@PathVariable ShoeType shoetype) {
+	public List<Product> getByshoetype(@PathVariable ShoeType shoetype) {
 		return productrepo.findByshoetype(shoetype);
 
 	}
@@ -170,6 +201,11 @@ public class AdminController {
 
 	}
 
+	/*
+	 * ---------------------- User Operations ----------------------
+	 */
+
+	
 	@PostMapping("addusers")
 	public User addusers(@RequestBody User users) {
 
@@ -182,13 +218,44 @@ public class AdminController {
 		return user;
 	}
 
+	@DeleteMapping("deleteuser/{id}")
+	public void deleteuser(@PathVariable int id) {
+
+		userrepo.deleteById(id);
+	}
+
+	@PutMapping("updateuser/{id}")
+	public User updateuser(@RequestBody User user ,@PathVariable int id) {
+		user.setID(id);
+		return userrepo.save(user);
+	}
+	
+
+	/*
+	 * ---------------------- Purchase Operations ----------------------
+	 */
+
 	@PostMapping("addpurchaseitem")
 	public PurchaseItem addpurchaseitem(@RequestBody PurchaseItem purchaseitem) {
-
+		System.out.println(purchaseitem);
 		return purchaserepo.save(purchaseitem);
 	}
 
-	
+	@DeleteMapping("deletepurchase/{id}")
+	public void deletePurchase(@PathVariable int id) {
+
+		purchaserepo.deleteById(id);
+	}
+
+	@PutMapping("updatepurchase/{id}")
+	public PurchaseItem updatepurchase(@RequestBody PurchaseItem purchaseitem ,@PathVariable int id) {
+		purchaseitem.setProductId(id);
+		System.out.println(purchaseitem);
+		System.out.println(id);
+		
+		return purchaserepo.save(purchaseitem);
+	}
+
 	@GetMapping("purchasedate/{purchaseDate}")
 	public List<PurchaseItem> getpurchasedate(@PathVariable String purchaseDate) {
 

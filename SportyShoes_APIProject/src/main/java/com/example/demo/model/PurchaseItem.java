@@ -17,16 +17,16 @@ public class PurchaseItem {
 	@Id 
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "purchase_id")
-	private long purchase_id;
+	private int purchaseId;
 	
 	@Column(name = "product_id")
-	private long productId;
+	private int productId;
 
 	@Column(name = "user_id")
-	private long userId;
+	private int userId;
 
 	@Column(name = "prod_category")
-	private String prodCategory;
+	private int prodCategory;
 
 	@Column(name = "purchase_date")
 	private String purchaseDate;
@@ -41,35 +41,53 @@ public class PurchaseItem {
 	@Column(name = "quantity")
 	private int quantity;
 
-	public long getPurchase_id() {
-		return purchase_id;
+	public PurchaseItem(int purchaseId, int productId, int userId, int prodCategory, String purchaseDate,
+			String vendorName, String custName, int quantity) {
+		super();
+		this.purchaseId = purchaseId;
+		this.productId = productId;
+		this.userId = userId;
+		this.prodCategory = prodCategory;
+		this.purchaseDate = purchaseDate;
+		this.vendorName = vendorName;
+		this.custName = custName;
+		this.quantity = quantity;
 	}
 
-	public void setPurchase_id(long purchase_id) {
-		this.purchase_id = purchase_id;
+	public PurchaseItem() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public long getProductId() {
+	public int getPurchaseId() {
+		return purchaseId;
+	}
+
+	public void setPurchaseId(int purchaseId) {
+		this.purchaseId = purchaseId;
+	}
+
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getProdCategory() {
+	public int getProdCategory() {
 		return prodCategory;
 	}
 
-	public void setProdCategory(String prodCategory) {
+	public void setProdCategory(int prodCategory) {
 		this.prodCategory = prodCategory;
 	}
 
@@ -105,5 +123,11 @@ public class PurchaseItem {
 		this.quantity = quantity;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "PurchaseItem [purchaseId=" + purchaseId + ", productId=" + productId + ", userId=" + userId
+				+ ", prodCategory=" + prodCategory + ", purchaseDate=" + purchaseDate + ", vendorName=" + vendorName
+				+ ", custName=" + custName + ", quantity=" + quantity + "]";
+	}
+
 }
