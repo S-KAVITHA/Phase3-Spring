@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.demo.exception.handling.BookNotFoundException;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Categorys;
+import com.example.demo.model.Color;
 import com.example.demo.model.Product;
+import com.example.demo.model.PurchaseItem;
 import com.example.demo.model.Season;
 import com.example.demo.model.ShoeType;
 import com.example.demo.model.User;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.CategorysRepository;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.PurchaseItemRepository;
 import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -49,8 +53,10 @@ public class AdminController {
 
 	@Autowired
 	UserRepository userrepo;
-	
-	
+
+	@Autowired
+	PurchaseItemRepository purchaserepo;
+
 	// @ApiOperation(value = "Get list of Books in the System ", response =
 	// Iterable.class, tags = "getAllBooks")
 	// @ApiResponses(value = {
@@ -65,8 +71,6 @@ public class AdminController {
 		return admin;
 	}
 
-	
-	
 	// @ApiOperation(value = "Get specific Book in the System ", response =
 	// Books.class, tags = "getBookById")
 
@@ -76,7 +80,6 @@ public class AdminController {
 		return adminrepo.findById(id);
 	}
 
-		
 	// @ApiOperation(value = "Update specific Book in the System ", response
 	// =Books.class, tags = "updateBookById")
 	@PutMapping("update/{id}")
@@ -84,8 +87,12 @@ public class AdminController {
 		return adminrepo.save(admin);
 	}
 
-	
-	
+	@PostMapping("addcategory")
+	public Categorys addcategory(@RequestBody Categorys category) {
+
+		return categrepo.save(category);
+	}
+
 	@PostMapping("addproduct")
 	public Product addProduct(@RequestBody Product product) {
 
@@ -99,15 +106,12 @@ public class AdminController {
 		return productrepo.save(product);
 	}
 
-	
-		
 	@DeleteMapping("deleteproduct/{id}")
 	public void deleteProduct(@PathVariable int id) {
-		
+
 		productrepo.deleteById(id);
 	}
 
-		
 	@PutMapping("updateproduct/{id}")
 	public Product updateStudent(@RequestBody Product product, @PathVariable("id") int id) {
 		System.out.println(product);
@@ -121,67 +125,82 @@ public class AdminController {
 		return productrepo.save(product);
 	}
 
-	
 	@GetMapping("product/{id}")
 	public Optional<Product> getprodById(@PathVariable int id) {
 
 		return productrepo.findById(id);
 	}
+
+	// @ApiOperation(value = "Get Books by year in the System ", response =
+	// Books.class, tags = "getBookByyear")
+
+	@GetMapping("prodcategory/{category}")
+	public List<Product> getProdBycategory(@PathVariable Category category) {
+		return productrepo.findBycategory(category);
+
+	}
+
+	@GetMapping("prodseason/{season}")
+	public List<Product> getProdByseason(@PathVariable Season season) {
+		return productrepo.findByseason(season);
+
+	}
+
+	@GetMapping("prodshoetype/{shoetype}")
+	public List<Product> shoetype(@PathVariable ShoeType shoetype) {
+		return productrepo.findByshoetype(shoetype);
+
+	}
+
+	@GetMapping("prodprice/{price}")
+	public List<Product> getProdByprice(@PathVariable float price) {
+		return productrepo.findByprice(price);
+
+	}
+
+	@GetMapping("prodcolor/{color}")
+	public List<Product> getProdBycolor(@PathVariable Color color) {
+		return productrepo.findBycolor(color);
+
+	}
+
+	@GetMapping("proddate/{createdDate}")
+	public List<Product> getProdBycreatedDate(@PathVariable String createdDate) {
+		return productrepo.findBycreatedDate(createdDate);
+
+	}
+
+	@PostMapping("addusers")
+	public User addusers(@RequestBody User users) {
+
+		return userrepo.save(users);
+	}
+
+	@GetMapping("listusers")
+	public List<User> getAllusers() {
+		List<User> user = (List<User>) userrepo.findAll();
+		return user;
+	}
+
+	@PostMapping("addpurchaseitem")
+	public PurchaseItem addpurchaseitem(@RequestBody PurchaseItem purchaseitem) {
+
+		return purchaserepo.save(purchaseitem);
+	}
+
 	
-	
-	  //@ApiOperation(value = "Get Books by year in the System ", response = Books.class, tags = "getBookByyear")
-	  
-	  @GetMapping("prodcategory/{category}") 
-	  public List<Product> getProdBycategory(@PathVariable int category) { 
-		 return productrepo.findBycategory(category);
-	  
-	  }
-	  
-	  
-	  
-	  @GetMapping("prodseason/{season}") 
-	  public List<Product> getProdByseason(@PathVariable Season  season) { 
-		 return productrepo.findByseason(season);
-	  
-	  }
-	  
-	  
-	  @GetMapping("prodshoetype/{shoetype}") 
-	  public List<Product> shoetype(@PathVariable ShoeType shoetype) { 
-		 return productrepo.findByshoetype(shoetype);
-	  
-	  }
-	  
-	  
-	  @GetMapping("prodprice/{price}") 
-	  public List<Product> getProdByprice(@PathVariable float price) { 
-		 return productrepo.findByprice(price);
-	  
-	  }
-	  
-	  
-	  @GetMapping("prodcolor/{color}") 
-	  public List<Product> getProdBycolor(@PathVariable String color) { 
-		 return productrepo.findBycolor(color);
-	  
-	  }
-	  
-	  
-	  
-	  @GetMapping("proddate/{createdDate}") 
-	  public List<Product> getProdBycreatedDate(@PathVariable String createdDate) { 
-		 return productrepo.findBycreatedDate(createdDate);
-	  
-	  }  
-	  
-	  
-		@GetMapping("listusers")
-		public List<User> getAllusers() {
-			List<User> user = (List<User>) userrepo.findAll();
-			return user;
-		}
-  
-	  
-	 
+	@GetMapping("purchasedate/{purchaseDate}")
+	public List<PurchaseItem> getpurchasedate(@PathVariable String purchaseDate) {
+
+		return purchaserepo.findBypurchaseDate(purchaseDate);
+
+	}
+
+	@GetMapping("prodcategory/{prodCategory}")
+	public List<PurchaseItem> getprodCategory(@PathVariable String prodCategory) {
+
+		return purchaserepo.findBypurchaseDate(prodCategory);
+
+	}
 
 }

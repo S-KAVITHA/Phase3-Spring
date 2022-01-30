@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name= "eusers")   
+@Table(name= "shoe_users")   
 public class User { 
 
 
@@ -28,16 +28,25 @@ public class User {
 	@Column(name = "address")
 	private String address;
 
+	@Column(name = "city")
+	private String city;
+
+
+	@Column(name = "zipcode")
+	private long zipcode;
+
+	@Column(name = "state")
+	private String state;
+
+	
+	@Column(name = "country")
+	private String country;
+
 	@Column(name = "age")
 	private int age;
 
 	@Column(name = "contact_no")
-	private int contact_no;  
-	
-	@Column(name = "emailid")
-	private String emailId;
-	
-	
+	private long contact_no;
 
 	public int getID() {
 		return ID;
@@ -71,6 +80,30 @@ public class User {
 		this.address = address;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public long getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(long zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public int getAge() {
 		return age;
 	}
@@ -79,19 +112,22 @@ public class User {
 		this.age = age;
 	}
 
-	public int getContact_no() {
+	public long getContact_no() {
 		return contact_no;
 	}
 
-	public void setContact_no(int contact_no) {
+	public void setContact_no(long contact_no) {
 		this.contact_no = contact_no;
 	}
 
-	public String getEmailId() {
-		return emailId;
+	public String getState() {
+		return state;
 	}
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	} 
+	public void setState(String state) {
+		this.state = state;
+	}  
+	
+		
+
 }
