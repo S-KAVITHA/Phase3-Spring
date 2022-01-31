@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+//@author Kavitha S
+
 public enum Color {
 
 	Blue("Blue"), Black("Black"), White("White"), Brown("Brown");

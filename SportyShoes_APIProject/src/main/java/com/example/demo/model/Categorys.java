@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,44 +10,52 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+//@author Kavitha S
 
 @Entity
 @Table(name = "shoe_category")
+
+
+@NamedEntityGraph(name="graph.Categorys.products", attributeNodes = @NamedAttributeNode(value="products"))
+
 public class Categorys {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
-	private int category_Id;
+	private int categoryId;
 
 	@Column(name = "name")
 	private String name;
 
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
-	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade =
-	// CascadeType.ALL)
 	private Set<Product> products = new HashSet<Product>();
+	
+	
 
-	
-	
+	public Categorys(int categoryId, String name, Set<Product> products) {
+		super();
+		this.categoryId = categoryId;
+		this.name = name;
+		this.products = products;
+	}
+
 	public Categorys() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorys(int category_Id, String name, Set<Product> products) {
-		super();
-		this.category_Id = category_Id;
-		this.name = name;
-		this.products = products;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public int getCategory_Id() {
-		return category_Id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getName() {
@@ -67,12 +74,7 @@ public class Categorys {
 		this.products = products;
 	}
 
-	public void setCategory_Id(int category_Id) {
-		this.category_Id = category_Id;
-	}
+
+}
 
 	
-	  @Override public String toString() { return "Categorys [category_Id=" +
-	  category_Id + ", name=" + name + ", products=" + products + "]"; }
-	 
-}

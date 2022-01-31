@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;  
 
+//@author Kavitha S
 
 @Entity
 @Table(name= "shoe_users")   

@@ -1,8 +1,5 @@
 package com.example.demo.model;
 
-import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,12 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+//@author Kavitha S
 
 @Entity
 @Table(name = "shoe_product")
@@ -33,8 +30,6 @@ public class Product {
 	@Column(name = "name")
 	private String name;
 
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// private Categorys category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id", nullable = true)

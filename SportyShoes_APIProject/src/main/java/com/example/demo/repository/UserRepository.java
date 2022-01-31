@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.User;
 
-
+//@author Kavitha S
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer>{

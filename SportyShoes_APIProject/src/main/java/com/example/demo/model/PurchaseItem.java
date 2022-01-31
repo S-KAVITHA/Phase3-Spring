@@ -1,14 +1,11 @@
 package com.example.demo.model;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;  
 
+//@author Kavitha S
 
 @Entity
 @Table(name= "purchase_items")   
@@ -25,8 +22,8 @@ public class PurchaseItem {
 	@Column(name = "user_id")
 	private int userId;
 
-	@Column(name = "prod_category")
-	private int prodCategory;
+	@Column(name = "purch_category")
+	private int purchCategory;
 
 	@Column(name = "purchase_date")
 	private String purchaseDate;
@@ -41,13 +38,13 @@ public class PurchaseItem {
 	@Column(name = "quantity")
 	private int quantity;
 
-	public PurchaseItem(int purchaseId, int productId, int userId, int prodCategory, String purchaseDate,
+	public PurchaseItem(int purchaseId, int productId, int userId, int purchCategory, String purchaseDate,
 			String vendorName, String custName, int quantity) {
 		super();
 		this.purchaseId = purchaseId;
 		this.productId = productId;
 		this.userId = userId;
-		this.prodCategory = prodCategory;
+		this.purchCategory = purchCategory;
 		this.purchaseDate = purchaseDate;
 		this.vendorName = vendorName;
 		this.custName = custName;
@@ -83,12 +80,12 @@ public class PurchaseItem {
 		this.userId = userId;
 	}
 
-	public int getProdCategory() {
-		return prodCategory;
+	public int getPurchCategory() {
+		return purchCategory;
 	}
 
-	public void setProdCategory(int prodCategory) {
-		this.prodCategory = prodCategory;
+	public void setPurchCategory(int purchCategory) {
+		this.purchCategory = purchCategory;
 	}
 
 	public String getPurchaseDate() {
@@ -126,7 +123,7 @@ public class PurchaseItem {
 	@Override
 	public String toString() {
 		return "PurchaseItem [purchaseId=" + purchaseId + ", productId=" + productId + ", userId=" + userId
-				+ ", prodCategory=" + prodCategory + ", purchaseDate=" + purchaseDate + ", vendorName=" + vendorName
+				+ ", purchCategory=" + purchCategory + ", purchaseDate=" + purchaseDate + ", vendorName=" + vendorName
 				+ ", custName=" + custName + ", quantity=" + quantity + "]";
 	}
 
