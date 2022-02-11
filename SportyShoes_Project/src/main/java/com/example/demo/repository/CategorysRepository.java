@@ -9,6 +9,6 @@ import com.example.demo.model.Categorys;
 
 
 @Repository
-public interface CategorysRepository extends CrudRepository<Categorys, Integer>{
+public interface CategorysRepository extends CrudRepository<Categorys, Long>{
 
 }

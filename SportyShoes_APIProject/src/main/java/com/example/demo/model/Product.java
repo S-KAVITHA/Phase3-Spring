@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,8 +31,7 @@ public class Product {
 	@Column(name = "name")
 	private String name;
 
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "category_id", nullable = true)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@JsonIgnoreProperties(ignoreUnknown = true)
@@ -158,12 +158,11 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	
-	  @Override public String toString() { return "Product [productId=" + productId
-	  + ", name=" + name + ", category=" + category + ", season=" + season +
-	  ", shoetype=" + shoetype + ", price=" + price + ", color=" + color +
-	  ", createdDate=" + createdDate + ", discount=" + discount + ", quantity=" +
-	  quantity + "]"; }
-	 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", name=" + name + ", category=" + category + ", season=" + season
+				+ ", shoetype=" + shoetype + ", price=" + price + ", color=" + color + ", createdDate=" + createdDate
+				+ ", discount=" + discount + ", quantity=" + quantity + "]";
+	}
 
 }

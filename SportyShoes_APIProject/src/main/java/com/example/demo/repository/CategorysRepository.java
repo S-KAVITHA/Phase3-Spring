@@ -15,7 +15,9 @@ import com.example.demo.model.Categorys;
 @Repository
 public interface CategorysRepository extends CrudRepository<Categorys, Integer>{
 
-	@EntityGraph(value = "graph.Categorys.products", type = EntityGraphType.LOAD)
-	List<Categorys> findBycategoryId(int category);	
+	
+	  @EntityGraph(value = "graph.Categorys.products", type = EntityGraphType.LOAD)
+	  List<Categorys> findBycategoryId(int category);
+	 
 	
 }

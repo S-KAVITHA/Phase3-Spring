@@ -6,11 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.repository.BookRepository;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 @SpringBootApplication
-@EnableSwagger2
 public class SpringBookExampleApplication {
+	@Autowired
+	BookRepository bookrepository;
 	
 	
 	public static void main(String[] args) {
@@ -19,5 +18,11 @@ public class SpringBookExampleApplication {
 		
 	}
 	
+	
+	public void run(String... args) {
+        System.out.println("StartApplication...");
+        System.out.println("get boks" + bookrepository.findAll());
+        
+    }
 	
 }

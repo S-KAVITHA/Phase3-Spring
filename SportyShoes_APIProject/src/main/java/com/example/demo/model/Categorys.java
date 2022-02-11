@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "shoe_category")
 
 
-@NamedEntityGraph(name="graph.Categorys.products", attributeNodes = @NamedAttributeNode(value="products"))
+//@NamedEntityGraph(name="graph.Categorys.products", attributeNodes = @NamedAttributeNode(value="products"))
 
 public class Categorys {
 
@@ -33,7 +33,9 @@ public class Categorys {
 	@Column(name = "name")
 	private String name;
 
+
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+	
 	private Set<Product> products = new HashSet<Product>();
 	
 	
@@ -74,7 +76,7 @@ public class Categorys {
 		this.products = products;
 	}
 
-
+	
 }
 
 	

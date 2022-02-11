@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,26 +13,46 @@
 
 
 
-<h1><font color="blue"> SportsShoes<Green></h1></font> 
+	<h1>
+		<font color="blue"> SportsShoes E-Commerce Web-site !!!<Green>
+	</h1>
+	</font>
 
-<p align="right">
-<button type="submit" formaction="adminchangepassword">Change Password</button>
-<button type="submit" formaction="/adminlogout">Logout</button>
-</p>
-<center>
-<h3>Welcome Admin,</br></br> 
+	
+	<form method="post">
+	<p align="right">
+		<button type="submit" formaction="/adminchangepwd/${adminId}/${adminPwd}">Change Password</button>
+		<button type="submit" formaction="/Logout">Logout</button>
+	</p>
+	</form>
+	
 
-You are allowed to perform all these maintainence operations.</h3>
+	<center>
+		<h3>
+			<font color="blue">Welcome ${adminId},</br> </br> You are allowed
+				to perform all these maintainence operations.
+			</font>
+		</h3>
 
-<h3><a href="/adminproducts">Add Products</a></h3>
-<h3><a href="/admincategories">Add Categories</a></h3>
-<h3><a href="/ListProducts">List Users</a></h3> 
-<h3><a href="/adminmembers">List Users</a></h3>
-<h3><a href="/adminpurchases">Purchase Report</a></h3>
-   
- </center>
-  
-<jsp:include page="/view/components/footer.jsp" ></jsp:include>
+		<h3>
+			<a href="/adminproducts">Add Products</a>
+		</h3>
+		<h3>
+			<a href="/admincategories">Add Categories</a>
+		</h3>
+		<h3>
+			<a href="/ListProducts">List Products</a>
+		</h3>
+		<h3>
+			<a href="/Listusers">List Users</a>
+		</h3>
+		<h3>
+			<a href="/ListPurchases">Purchase Report</a>
+		</h3>
+
+	</center>
+
+	<jsp:include page="/view/components/footer.jsp"></jsp:include>
 
 </body>
 </html>

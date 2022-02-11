@@ -13,73 +13,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Books;
+import com.example.demo.model.Book;
 import com.example.demo.repository.BookRepository;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
-@Api(value = "SwaggerBookController", description = "REST Apis related to Book Entity!!!!")
 @RestController
-//@RequestMapping("book")
+@RequestMapping("book")
 public class BookController {
 
 	@Autowired
 	BookRepository bookrepository;
 	
 	
-	@ApiOperation(value = "Get list of Books in the System ", response = Iterable.class, tags = "getAllBooks")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Suceess|OK"),
-			@ApiResponse(code = 401, message = "not authorized!"), 
-			@ApiResponse(code = 403, message = "forbidden!!!"),
-			@ApiResponse(code = 404, message = "not found!!!") })
-	
 	@GetMapping("all")
-	public List<Books> getAllBooks()
+	public List<Book> getAllBooks()
 	{
-		List<Books> book =(List<Books>) bookrepository.findAll();
+		List<Book> book =(List<Book>) bookrepository.findAll();
 		return book;
 	}
 	
 	
-	
-	@ApiOperation(value = "Get specific Book in the System ", response = Books.class, tags = "getBookById")
+
 	@GetMapping("book/{id}")
-	public Optional<Books> getBookById(@PathVariable int id)
+	public Optional<Book> getBookById(@PathVariable int id)
 	{
 		return bookrepository.findById(id);
 	}
 	
 	
 	
-	
-	@ApiOperation(value = "Create Book in the System ", response = Books.class, tags = "createBook")
 	@PostMapping("add")
-	public Books createBook(@RequestBody Books book)
+	public Book createBook(@RequestBody Book book)
 	{
 		return bookrepository.save(book);
 	}
 	
-	
-	
-	@ApiOperation(value = "Update specific Book in the System ", response = Books.class, tags = "updateBookById")
+
 	@PutMapping("update/{id}")
-	public Books updateBookById(@RequestBody Books book)
+	public Book updateBookById(@RequestBody Book book)
 	{
 		return bookrepository.save(book);
 	}
 	
 	
-	
-	@ApiOperation(value = "Delete specific Book in the System ", response = Books.class, tags = "deleteBook")
 	@DeleteMapping("delete/{id}")
 	public void deleteBook(@PathVariable int id)
 	{
 		bookrepository.deleteById(id);
 	}
 
-	
+	/*
+	 * @DeleteMapping("delete/{id}") public void deleteAllBook(@PathVariable int id)
+	 * { bookrepository.deleteById(id); }
+	 * 
+	 * 
+	 * @DeleteMapping("delete/{id}") public void findByPublishedYear(@PathVariable
+	 * int id) { bookrepository.deleteById(id); }
+	 */
 }

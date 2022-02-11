@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Products {
 
 		private int pid;

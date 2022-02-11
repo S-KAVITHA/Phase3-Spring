@@ -17,20 +17,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-@Table(name = "eproduct")
+@Table(name = "sh_products")
+
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productId")
-	private long productId;
+	private Long productId;
 
 	@Column(name = "name")
 	private String name;
 
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// private Categorys category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id", nullable = true)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	private Categorys category;
 
 	@Enumerated(EnumType.STRING)
@@ -59,11 +68,11 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 
@@ -91,7 +100,7 @@ public class Product {
 		this.season = season;
 	}
 
-	public Product(long productId, String name, Categorys category, Season season, ShoeType shoetype, float price,
+	public Product(Long productId, String name, Categorys category, Season season, ShoeType shoetype, float price,
 			Color color, String createdDate, String discount, int quantity) {
 		super();
 		this.productId = productId;
@@ -153,5 +162,15 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	
+	
+	  @Override public String toString() { return "Product [productId=" + productId
+	  + ", name=" + name + ", category=" + category + ", season=" + season +
+	  ", shoetype=" + shoetype + ", price=" + price + ", color=" + color +
+	  ", createdDate=" + createdDate + ", discount=" + discount + ", quantity=" +
+	  quantity + "]"; }
+	 
+	 
 
 }
